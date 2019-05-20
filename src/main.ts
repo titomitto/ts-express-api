@@ -26,7 +26,6 @@ app.use(cors({ credentials: true}));
 app.use(logger('dev'));
 app.use(exceptionHandler);
 app.use(router);
-// Initialize socket
 sockets(io);
 
 http.listen(port, () => {

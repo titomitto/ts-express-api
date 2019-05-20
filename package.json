@@ -5,7 +5,7 @@
   "main": "main.ts",
   "scripts": {
     "start": "nodemon",
-    "build": "gulp build",
+    "build": "gulp",
     "clean": "gulp clean"
   },
   "_moduleDirectories": [

@@ -10,13 +10,15 @@ gulp.task('compile-ts', function () {
         .pipe(gulp.dest('src'));
 });
 
-gulp.task('build', function () {
+gulp.task('watch', function () {
     gulp.watch('./src/**/*.ts', gulp.series('compile-ts'));
 });
 
-gulp.task('clean', function () {
+gulp.task('clean-js', function () {
     return gulp.src('./src/**/*.js', { read: false })
         .pipe(clean());
 });
 
-gulp.task('default', gulp.series('clean'));
+
+gulp.task('clean', gulp.series('clean-js'));
+gulp.task('default', gulp.series('compile-ts'));
