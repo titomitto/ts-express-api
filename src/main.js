@@ -1,0 +1,33 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+require("module-alias/register");
+require("universal-dotenv");
+require("express-async-errors");
+require("express-router-group");
+const body_parser_1 = __importDefault(require("body-parser"));
+const express_1 = __importDefault(require("express"));
+const morgan_1 = __importDefault(require("morgan"));
+const helmet_1 = __importDefault(require("helmet"));
+const exceptions_1 = __importDefault(require("app/exceptions"));
+const cors_1 = __importDefault(require("cors"));
+const db_1 = require("db");
+const routes_1 = __importDefault(require("app/routes"));
+const sockets_1 = __importDefault(require("app/sockets"));
+const app = express_1.default();
+const port = process.env.PORT || 3030;
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+app.use(helmet_1.default());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(body_parser_1.default.json());
+app.use(cors_1.default({ credentials: true }));
+app.use(morgan_1.default('dev'));
+app.use(exceptions_1.default);
+app.use(routes_1.default);
+sockets_1.default(io);
+http.listen(port, () => {
+    db_1.syncDB();
+});

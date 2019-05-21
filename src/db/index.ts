@@ -1,14 +1,12 @@
 import fs from "fs";
 import chalk from "chalk";
 import { Sequelize } from "sequelize-typescript";
-import dbConfig, { syncOptions } from "config/database";
+import dbConfig, { syncOptions, models } from "config/database";
 
 
 const db = new Sequelize(dbConfig);
 
-db.addModels([
-
-]);
+db.addModels(models);
 
 export const syncDB = ()=>{
     return db.sync(syncOptions)

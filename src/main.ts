@@ -29,7 +29,5 @@ app.use(router);
 sockets(io);
 
 http.listen(port, () => {
-    let message = `Listening on port ${port}`
-    console.log(message);
     syncDB();
 });

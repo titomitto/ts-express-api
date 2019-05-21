@@ -6,7 +6,10 @@
   "scripts": {
     "start": "nodemon",
     "build": "gulp",
-    "clean": "gulp clean"
+    "clean": "gulp clean",
+    "predeploy": "npm install && gulp clean && gulp",
+    "deploy": "pm2 start src/main.js --name ts-express-api",
+    "redeploy": "gulp clean && gulp && pm2 restart ts-express-api"
   },
   "_moduleDirectories": [
     "src"
@@ -17,6 +20,7 @@
   "dependencies": {
     "@types/node": "^12.0.2",
     "@types/socket.io": "^2.1.2",
+    "bcrypt": "^3.0.6",
     "chalk": "^2.4.2",
     "cors": "^2.8.5",
     "cross": "^1.0.0",
@@ -30,6 +34,7 @@
     "gulp-typescript": "^5.0.1",
     "helmet": "^3.18.0",
     "i": "^0.3.6",
+    "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.0",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
