@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import event from "app/events";
 import { User } from "app/models";
 
-export class AuthController {
+class AuthController {
   static async login(req: Request, res: Response) {
     const { email, password } = req.body;
     const user = await User.find({
@@ -46,3 +46,5 @@ export class AuthController {
     });
   }
 }
+
+export default AuthController;

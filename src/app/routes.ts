@@ -1,21 +1,12 @@
-import { Router } from 'express';
-import event from 'app/events';
-
+import { Router } from "express";
+import event from "app/events";
+import { IndexController, AuthController } from "./controllers";
 
 const router: any = Router();
 
-router.use("/", (req, res)=>{
-    event.emit('new:user', "Tito Mordeccai");
-    return res.json({
-        success: true,
-        message: "Welcome to the best api starter"
-    });
-});
+router.use("/", IndexController.index);
+router.use("**", IndexController.notFound);
+router.post("/login", AuthController.login);
+router.post("/recover-password", AuthController.recoverPassword);
 
-router.use("**", (req, res) => {
-    return res.status(400).json({
-        success: false,
-        message: "Requested resource not found."
-    });
-});
 export default router;

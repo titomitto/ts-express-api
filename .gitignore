@@ -1,6 +1,5 @@
 # Node modules
 node_modules
-package-lock.json
 
 # Directory for storing tmp files
 tmp
