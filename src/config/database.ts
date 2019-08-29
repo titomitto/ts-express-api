@@ -1,13 +1,19 @@
 import { SyncOptions } from "sequelize";
+import { SequelizeOptions } from "sequelize-typescript";
 import { User } from "app/models";
 
-export const models = [User];
+// Database models
+export const models = [
+  User
+];
 
+// Sync options
 export const syncOptions: SyncOptions = {
   alter: false,
   force: false,
   logging: false
 };
+
 
 export default {
   host: process.env.DB_HOST,
@@ -17,4 +23,4 @@ export default {
   dialect: process.env.DB_DIALECT,
   storage: process.env.DB_STORAGE_PATH,
   port: Number(process.env.DB_PORT)
-};
+} as SequelizeOptions;

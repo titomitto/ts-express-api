@@ -5,7 +5,7 @@ import dbConfig, { syncOptions, models } from "config/database";
 
 
 const db = new Sequelize(dbConfig);
-
+//Add all models
 db.addModels(models);
 
 export const syncDB = ()=>{

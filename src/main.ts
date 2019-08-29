@@ -6,11 +6,11 @@ import bodyParser from "body-parser";
 import express from 'express';
 import logger from 'morgan';
 import helmet from 'helmet';
-import exceptionHandler from 'app/exceptions';
 import cors from 'cors';
 import { syncDB } from 'db';
 import router from 'app/routes';
 import sockets from 'app/sockets';
+import exceptionHandler from 'app/exceptions';
 
 
 const app = express();
