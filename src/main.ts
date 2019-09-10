@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors({ credentials: true}));
 app.use(logger('dev'));
-app.use(exceptionHandler);
 app.use(router);
+app.use(exceptionHandler);
 sockets(io);
 
 http.listen(port, () => {

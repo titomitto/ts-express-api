@@ -1,2 +1,4 @@
 import User from "./User";
-export { User };
+import ResetToken from "./ResetToken";
+import Config from "./Config";
+export { User, ResetToken, Config  };

@@ -4,9 +4,15 @@ import { IndexController, AuthController } from "./controllers";
 
 const router: any = Router();
 
-router.use("/", IndexController.index);
-router.use("**", IndexController.notFound);
-router.post("/login", AuthController.login);
-router.post("/recover-password", AuthController.recoverPassword);
 
+router.post("/login", AuthController.login);
+router.post("/register", AuthController.register);
+router.group('/password', (router: Router) => {
+    router.post("/forgot", AuthController.forgotPassword);
+    router.post("/reset", AuthController.resetPassword);
+});
+
+// Default handlers
+
+router.use("**", IndexController.notFound);
 export default router;

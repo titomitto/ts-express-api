@@ -6,17 +6,23 @@ import {
   CreatedAt,
   BeforeUpdate,
   BeforeCreate,
+  HasMany,
   DeletedAt
 } from "sequelize-typescript";
 import bcrypt from "bcrypt";
+import { ResetToken} from "app/models";
 
 @Table({
   timestamps: true,
-  tableName: "users"
+  tableName: "users",
+  underscored: true
 })
 class User extends Model<User> {
   @Column
-  full_name: string;
+  firstName: string;
+
+  @Column
+  lastName: string;
 
   @Column
   email: string;
@@ -25,16 +31,19 @@ class User extends Model<User> {
   password: string;
 
   @Column
-  user_type: string;
+  userType: string;
 
   @CreatedAt
-  created_at: Date;
+  createdAt: Date;
 
   @UpdatedAt
-  updated_at: Date;
+  updatedAt: Date;
 
   @DeletedAt
-  deleted_at: Date;
+  deletedAt: Date;
+
+  @HasMany(()=>ResetToken)
+  resetTokens
 
   @BeforeUpdate
   @BeforeCreate
@@ -43,10 +52,11 @@ class User extends Model<User> {
   }
 
   toJSON() {
-    let values = this.get();
+    let values = this.get() as User;
     delete values.password;
     return values;
   }
+  
 }
 
 export default User;

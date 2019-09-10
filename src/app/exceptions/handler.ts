@@ -7,8 +7,7 @@ const exceptionHandler = (err, req, res, next) => {
   res.status(500).json({
     success: false,
     message: "We got an error",
-    error: err.stack.split("\n")[0],
-    file: err.stack.split("\n")[1].trim() || ""
+    error: err.stack
   });
 };
 
