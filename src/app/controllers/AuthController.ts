@@ -17,7 +17,7 @@ class AuthController {
     });
 
     if (!user) {
-      return res.status(402).json({
+      return res.status(400).json({
         success: false,
         field: "email",
         message: "Incorrect credentials"
