@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import event from "app/events";
 import { User, ResetToken } from "app/models";
@@ -35,7 +35,7 @@ class AuthController {
       return res.json({
         success: true,
         user,
-        accessToken: jwt.sign({uuid: user.id}, process.env.APP_KEY),
+        accessToken: jwt.sign({uuid: user.id,}, "secret", process.env.APP_KEY),
         message: "Login successful"
       });
     }

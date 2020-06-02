@@ -9,7 +9,7 @@ import {
   HasMany,
   DeletedAt
 } from "sequelize-typescript";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { ResetToken} from "app/models";
 
 @Table({
